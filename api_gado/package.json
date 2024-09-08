@@ -20,7 +20,11 @@
     "@prisma/client": "^5.13.0",
     "@types/cors": "^2.8.17",
     "cors": "^2.8.5",
+<<<<<<< HEAD
     "express": "^4.19.1",
     "react-hook-form": "^7.53.0"
+=======
+    "express": "^4.19.1"
+>>>>>>> e3fde6d222bb3cb5930985faa38bc60390da5147
   }
 }
