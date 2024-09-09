@@ -1,32 +1,21 @@
 "use client";
 
-<<<<<<< HEAD
 import React from "react";
 import { InputPesquisa } from "../components/InputPesquisa";
 import { ItemGados } from "../components/ItemGados";
 import { GadoI } from "../utils/types/gados";
 import { useEffect, useState } from "react";
 import { Toaster } from "sonner";
-=======
-import { InputPesquisa } from "@/components/InputPesquisa";
-import { ItemGados } from "@/components/ItemGados";
-import { GadoI } from "@/utils/types/gados";
-import { useEffect, useState } from "react";
->>>>>>> e3fde6d222bb3cb5930985faa38bc60390da5147
 
 export default function Home() {
   const [gados, setGados] = useState<GadoI[]>([]);
+
   useEffect(() => {
     async function buscaDados() {
-<<<<<<< HEAD
       const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/gados`);
       const dados = await response.json();
       //console.log(dados);
-=======
-      const response = await fetch(`${process.env.NEST_PUBLIC_URL_API}/gados`);
-      const dados = await response.json();
-      console.log(dados);
->>>>>>> e3fde6d222bb3cb5930985faa38bc60390da5147
+
       setGados(dados);
     }
     buscaDados();
@@ -40,11 +29,7 @@ export default function Home() {
       className="bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: 'url("./fundo.jpeg")' }}
     >
-<<<<<<< HEAD
       <InputPesquisa setGados={setGados} />
-=======
-      <InputPesquisa />
->>>>>>> e3fde6d222bb3cb5930985faa38bc60390da5147
 
       <section className="max-w-screen-xl mx-auto">
         <h1 className="mb-10 mt-6 text-center  text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">
@@ -58,10 +43,8 @@ export default function Home() {
           {listaGado}
         </div>
       </section>
-<<<<<<< HEAD
+
       <Toaster position="top-right" richColors />
-=======
->>>>>>> e3fde6d222bb3cb5930985faa38bc60390da5147
     </main>
   );
 }
