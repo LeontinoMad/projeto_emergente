@@ -12,7 +12,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-<<<<<<< HEAD
 model Raca {
   id        Int      @id @default(autoincrement())
   nome      String   @db.VarChar(30)
@@ -43,44 +42,6 @@ model Gado {
 enum Sexo {
   MACHO
   FEMEA
-=======
-// : nome, data do
-// nascimento, peso do nascimento, altura, a mãe deste bebê e o médico que fez seu parto
-
-model Marca {
-  id        Int      @id @default(autoincrement())
-  nome      String   @db.VarChar(30)
-  carros    Carro  []  
-  
-  @@map("marcas")
-}
-
-
-model Carro {
-  id          Int        @id @default(autoincrement())
-  modelo      String     @db.VarChar(60)
-  ano         Int        @db.SmallInt
-  preco       Decimal   @db.Decimal(10, 2)
-  km          Int        @db.MediumInt
-  destaque    Boolean    @default(true)
-  foto        String
-  acessorios  String?
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  combustivel Combustiveis @default(FLEX)
-  marca       Marca     @relation(fields: [marcaId], references: [id])
-  marcaId  Int
-  
-  @@map("carros")
-  }
-
-enum Combustiveis {
-  FLEX
-  GASOLINA
-  ALCOOL
-  DIESEL
-  ELETRICO
->>>>>>> e3fde6d222bb3cb5930985faa38bc60390da5147
 }
 
 
