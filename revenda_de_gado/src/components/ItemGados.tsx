@@ -21,7 +21,7 @@ export function ItemGados({ data }: { data: GadoI }) {
           Idade: {data.idade}
         </p>
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          Peso: {data.peso}
+          Peso: {data.peso} Kg
         </p>
         <p className="mb-3 font-bold text-gray-700 dark:text-gray-400">
           Valor: R${" "}
