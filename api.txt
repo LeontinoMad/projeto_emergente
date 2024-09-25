@@ -1,0 +1,70 @@
+[
+  {
+    "id": 5,
+    "tipo": "Sobreano",
+    "idade": " 18 meses",
+    "preco": "2200",
+    "peso": "200",
+    "destaque": true,
+    "foto": "/gado4",
+    "createdAt": "2024-09-01T12:39:43.202Z",
+    "updatedAt": "2024-09-01T12:39:43.202Z",
+    "sexo": "MACHO",
+    "racasId": 6,
+    "racas": {
+      "id": 6,
+      "nome": "Hereford"
+    }
+  },
+  {
+    "id": 6,
+    "tipo": "Sobreano",
+    "idade": " 18 meses",
+    "preco": "2000",
+    "peso": "180",
+    "destaque": true,
+    "foto": "/gado3",
+    "createdAt": "2024-09-01T12:41:48.188Z",
+    "updatedAt": "2024-09-01T12:41:48.188Z",
+    "sexo": "MACHO",
+    "racasId": 2,
+    "racas": {
+      "id": 2,
+      "nome": "Indefinida"
+    }
+  },
+  {
+    "id": 7,
+    "tipo": "Sobreano",
+    "idade": " 1 ano",
+    "preco": "1500",
+    "peso": "150",
+    "destaque": true,
+    "foto": "/gado2",
+    "createdAt": "2024-09-01T12:42:36.186Z",
+    "updatedAt": "2024-09-01T12:42:36.186Z",
+    "sexo": "MACHO",
+    "racasId": 2,
+    "racas": {
+      "id": 2,
+      "nome": "Indefinida"
+    }
+  },
+  {
+    "id": 8,
+    "tipo": "terneiro",
+    "idade": " 6 meses",
+    "preco": "1000",
+    "peso": "87",
+    "destaque": true,
+    "foto": "/gado1",
+    "createdAt": "2024-09-01T12:44:24.588Z",
+    "updatedAt": "2024-09-01T12:44:24.588Z",
+    "sexo": "MACHO",
+    "racasId": 7,
+    "racas": {
+      "id": 7,
+      "nome": "Red Angus"
+    }
+  }
+]
