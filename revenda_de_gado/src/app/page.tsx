@@ -1,21 +1,36 @@
 "use client";
 
-import React from "react";
 import { InputPesquisa } from "../components/InputPesquisa";
 import { ItemGados } from "../components/ItemGados";
 import { GadoI } from "../utils/types/gados";
 import { useEffect, useState } from "react";
 import { Toaster } from "sonner";
+import { useClienteStore } from "@/context/cliente";
 
 export default function Home() {
   const [gados, setGados] = useState<GadoI[]>([]);
+  const { logaCliente } = useClienteStore();
 
   useEffect(() => {
+    async function buscaCliente(idCliente: string) {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_URL_API}/clientes/${idCliente}`
+      );
+      if (response.status == 200) {
+        const dados = await response.json();
+        logaCliente(dados);
+      }
+    }
+
+    if (localStorage.getItem("client_key")) {
+      const idClienteLocal = localStorage.getItem("client_key") as string;
+      buscaCliente(idClienteLocal);
+    }
+
     async function buscaDados() {
       const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/gados`);
       const dados = await response.json();
       //console.log(dados);
-
       setGados(dados);
     }
     buscaDados();
@@ -24,6 +39,7 @@ export default function Home() {
   const listaGado = gados.map((gado) => (
     <ItemGados data={gado} key={gado.id} />
   ));
+
   return (
     <main
       className="bg-cover bg-center bg-no-repeat"
@@ -43,7 +59,6 @@ export default function Home() {
           {listaGado}
         </div>
       </section>
-
       <Toaster position="top-right" richColors />
     </main>
   );

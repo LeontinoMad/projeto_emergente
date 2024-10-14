@@ -1,6 +1,7 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { useClienteStore } from "@/context/cliente";
 
 type inputs = {
   email: string;
@@ -10,6 +11,7 @@ type inputs = {
 
 export default function Login() {
   const { register, handleSubmit } = useForm<inputs>();
+  const { logaCliente } = useClienteStore();
   const router = useRouter();
 
   async function verificaLogin(data: inputs) {
@@ -24,11 +26,23 @@ export default function Login() {
         body: JSON.stringify({ email: data.email, senha: data.senha }),
       }
     );
-    //console.log(response);
+
     if (response.status == 200) {
       const dados = await response.json();
-      router.push("/");
+      // router.push("/");
       // alert("Olá " + dados.nome);
+      logaCliente(dados);
+
+      // se quiser manter conectado salvar ID local store
+      if (data.manter) {
+        localStorage.setItem("client_key", dados.id);
+      } else {
+        if (localStorage.getItem("client_key")) {
+          localStorage.removeItem("client_key");
+        }
+      }
+
+      router.push("/");
     } else {
       alert("Erro... Senha ou Login incorretos");
     }
@@ -66,6 +80,7 @@ export default function Login() {
                     {...register("email")}
                   />
                 </div>
+
                 <div>
                   <label
                     htmlFor="password"
