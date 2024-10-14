@@ -20,7 +20,18 @@ model Raca {
   @@map("racas")
 }
 
-
+model Proposta {
+  id          Int       @id @default(autoincrement())
+  cliente     Cliente   @relation(fields: [clienteId], references: [id])
+  clienteId   String    @db.VarChar(36)
+  gado        Gado     @relation(fields: [gadoId], references: [id])
+  gadoId      Int
+  descricao   String    @db.VarChar(255)
+  resposta    String?   @db.VarChar(255)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt  
+  @@map("propostas")
+}
 model Gado {
   id          Int        @id @default(autoincrement())
   tipo        String     @db.VarChar(60)
@@ -35,6 +46,7 @@ model Gado {
   sexo        Sexo       @default(MACHO)
   racas       Raca     @relation(fields: [racasId], references: [id])
   racasId  Int
+  propostas   Proposta[]
   
   @@map("gados")
   }
@@ -46,6 +58,7 @@ model Gado {
   senha        String   @db.VarChar(60)   // senha deve ser varchar(60)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt  
+  propostas    Proposta[]
  
   @@map("clientes")
 }

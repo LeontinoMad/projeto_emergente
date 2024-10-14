@@ -126,4 +126,26 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const cliente = await prisma.cliente.findUnique({
+      where: { id },
+    });
+
+    if (cliente == null) {
+      res.status(400).json({ erro: "não cadastrado" });
+    } else {
+      res.status(200).json({
+        id: cliente.id,
+        nome: cliente.nome,
+        email: cliente.email,
+      });
+    }
+  } catch (error) {
+    res.status(400).json(error);
+  }
+});
+
 export default router;
