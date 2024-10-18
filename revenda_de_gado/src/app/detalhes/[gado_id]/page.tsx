@@ -50,7 +50,7 @@ export default function Detalhes() {
         method: "POST",
         body: JSON.stringify({
           clienteId: cliente.id,
-          carroId: Number(params.gado_id),
+          gadoId: Number(params.gado_id),
           descricao: data.descricao,
         }),
       }
