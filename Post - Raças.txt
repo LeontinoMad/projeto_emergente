@@ -1,0 +1,21 @@
+﻿// Cadastrar Raças
+[
+  {
+    "nome": "Angus"
+  },
+  {
+    "nome": "Holandesa"
+  },
+  {
+    "nome": "Indefinida"
+  },
+  {
+    "nome": "Red Angus"
+  },
+  {
+    "nome": "Hereford"
+  },
+  {
+    "nome": "Hereford"
+  }
+]

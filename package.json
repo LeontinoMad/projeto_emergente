@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@prisma/client": "^5.21.1",
     "sonner": "^1.5.0"
   }
 }

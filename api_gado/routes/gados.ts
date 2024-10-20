@@ -72,7 +72,7 @@ router.delete("/:id", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { sexo, racasId } = req.body;
+  const { sexo, racasId, foto } = req.body;
 
   if (!sexo || !racasId) {
     res.status(400).json({
@@ -84,7 +84,7 @@ router.put("/:id", async (req, res) => {
   try {
     const gado = await prisma.gado.update({
       where: { id: Number(id) },
-      data: { sexo, racasId },
+      data: { sexo, racasId, foto },
     });
     res.status(200).json(gado);
   } catch (error) {
