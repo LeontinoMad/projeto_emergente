@@ -2,6 +2,8 @@
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useClienteStore } from "@/context/cliente";
+import { useState } from "react";
+
 
 type inputs = {
   email: string;
@@ -10,12 +12,15 @@ type inputs = {
 };
 
 export default function Login() {
+
+  const { logaCliente } = useClienteStore()
   const { register, handleSubmit } = useForm<inputs>();
-  const { logaCliente } = useClienteStore();
+  const [esqueceuSenha, setEsqueceuSenha] = useState(false);
   const router = useRouter();
 
+  const [login, setLogin] = useState(true);
+
   async function verificaLogin(data: inputs) {
-    //console.log(data);
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_URL_API}/clientes/login`,
       {
@@ -29,11 +34,8 @@ export default function Login() {
 
     if (response.status == 200) {
       const dados = await response.json();
-      // router.push("/");
-      // alert("Olá " + dados.nome);
       logaCliente(dados);
 
-      // se quiser manter conectado salvar ID local store
       if (data.manter) {
         localStorage.setItem("client_key", dados.id);
       } else {
@@ -48,6 +50,38 @@ export default function Login() {
     }
   }
 
+  async function verificaEmail(data: inputs) {
+    console.log(data.email);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL_API}/clientes/verifica-email`, 
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({ email: data.email }),
+      }
+    );
+  
+    if (response.status == 200) {
+      const dados = await response.json();
+      console.log("Email encontrado");
+
+      // AJUSTAR A PARTIR DAQUI: ALTERAR A ROTA PARA O PRÓXIMO PASSO
+      router.push("/");
+    } else {
+      alert("Erro, e-mail não cadastrado.");
+    }
+  }
+
+  function handleVoltarLogin() {
+    setEsqueceuSenha(false);
+  }
+
+  function handleEsqueceuSenha() {
+    setEsqueceuSenha(true);
+  }
+
   return (
     <main
       className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
@@ -57,89 +91,136 @@ export default function Login() {
         <div className="flex flex-col items-center justify-center px-2 py-2 mx-auto md:h-screen lg:py-0">
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                Informe seus Dados de Acesso
-              </h1>
-              <form
-                className="space-y-4 md:space-y-6"
-                onSubmit={handleSubmit(verificaLogin)}
-              >
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              {!esqueceuSenha ? (
+                <>
+                  <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                    Informe seus Dados de Acesso
+                  </h1>
+                  <form
+                    className="space-y-4 md:space-y-6"
+                    onSubmit={handleSubmit(verificaLogin)}
                   >
-                    E-mail do Cliente:
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="name@company.com"
-                    required
-                    {...register("email")}
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="password"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    Senha de Acesso
-                  </label>
-                  <input
-                    type="password"
-                    id="password"
-                    placeholder="••••••••"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
-                    {...register("senha")}
-                  />
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-start">
-                    <div className="flex items-center h-5">
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        E-mail do Cliente:
+                      </label>
                       <input
-                        id="remember"
-                        aria-describedby="remember"
-                        type="checkbox"
-                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                        {...register("manter")}
+                        type="email"
+                        id="email"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="name@company.com"
+                        required
+                        {...register("email")}
                       />
                     </div>
-                    <div className="ml-3 text-sm">
+
+                    <div>
                       <label
-                        htmlFor="remember"
-                        className="text-gray-500 dark:text-gray-300"
+                        htmlFor="password"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                       >
-                        Manter Conectado
+                        Senha de Acesso
                       </label>
+                      <input
+                        type="password"
+                        id="password"
+                        placeholder="••••••••"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required
+                        {...register("senha")}
+                      />
                     </div>
-                  </div>
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-start">
+                        <div className="flex items-center h-5">
+                          <input
+                            id="remember"
+                            aria-describedby="remember"
+                            type="checkbox"
+                            className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                            {...register("manter")}
+                          />
+                        </div>
+                        <div className="ml-3 text-sm">
+                          <label
+                            htmlFor="remember"
+                            className="text-gray-500 dark:text-gray-300"
+                          >
+                            Manter Conectado
+                          </label>
+                        </div>
+                      </div>
+                      <a
+                        onClick={handleEsqueceuSenha}
+                        className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                      >
+                        Esqueceu sua Senha?
+                      </a>
+                    </div>
+                    <button
+                      type="submit"
+                      className="w-full text-white bg-gray-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                    >
+                      Entrar
+                    </button>
+                    <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                      Não está cadastrado?{" "}
+                      <a
+                        href="#"
+                        className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                      >
+                        Cadastre-se
+                      </a>
+                    </p>
+                  </form>
+                </>
+              ) : (
+                <>
+                  <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                    Redefinição de Senha
+                  </h1>
+                  <form
+                    className="space-y-4 md:space-y-6"
+                    onSubmit={handleSubmit(verificaEmail)}
                   >
-                    Esqueceu sua Senha?
-                  </a>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full text-white bg-gray-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                >
-                  Entrar
-                </button>
-                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                  Não está cadastrado?{" "}
-                  <a
-                    href="#"
-                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                  >
-                    Cadastre-se
-                  </a>
-                </p>
-              </form>
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        Insira seu e-mail:
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="name@company.com"
+                        required
+                        {...register("email")}
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full text-white bg-gray-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                    >
+                      Avançar
+                    </button>
+                    <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                      Lembrou a senha? volte para o{" "}
+                      <a
+                        onClick={handleVoltarLogin}
+                        className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                      >
+                        Login
+                      </a>
+                    </p>
+                  </form>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -147,3 +228,7 @@ export default function Login() {
     </main>
   );
 }
+function logaCliente(dados: any) {
+  throw new Error("Function not implemented.");
+}
+
