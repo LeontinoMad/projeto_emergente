@@ -1,0 +1,6 @@
+- Verificar search 
+      - não está encontrando quando a palavra não está completa
+      - não está retornando quando apagamos a palavra
+- cadastrar clientes no Bruno
+- cadastrar propostas no Bruno
+- criar "esqueci minha senha"

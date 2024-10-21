@@ -1,0 +1,28 @@
+// Cadastrar Cliente
+[
+  {
+   "nome": "Pedro",
+   "email": "pedro@gmail.com", 
+   "senha": "Pedro@123"
+},
+{
+  "nome": "Joao",
+  "email": "joao@gmail.com", 
+  "senha": "Joao@123"
+},
+{
+  "nome": "Cleber",
+  "email": "cleber@gmail.com", 
+  "senha": "Cleber@123"
+},
+{
+  "nome": "Guti",
+  "email": "guticres@hotmail.com", 
+  "senha": "Guti@123"
+},
+  {
+  "nome": "Leo",
+  "email": "leontinomadruga@hotmail.com", 
+  "senha": "Leo@123"
+  }
+]

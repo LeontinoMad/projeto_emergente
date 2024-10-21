@@ -17,14 +17,14 @@ export function Header() {
   }
 
   return (
-    <nav className="bg-gray-600 border-gray-200 dark:bg-gray-900">
+    <nav className="bg-gray-600 border-gray-200">
       <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
         <Link
           href="/"
           className="flex items-center space-x-3 rtl:space-x-reverse  ml-20"
         >
           <img src="./gado.webp" className="h-16" alt="Logo" />
-          <span className="mr-11 text-4xl font-bold whitespace-nowrap ">
+          <span className="mr-11 text-4xl font-bold text-black whitespace-nowrap ">
             Revenda de Gado Biduca
           </span>
         </Link>

@@ -12,25 +12,27 @@ export default function Home() {
   const { logaCliente } = useClienteStore();
 
   useEffect(() => {
+    console.log("Use Effect Funcionando");
     async function buscaCliente(idCliente: string) {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_URL_API}/clientes/${idCliente}`
-      );
-      if (response.status == 200) {
-        const dados = await response.json();
+        const response = await fetch(
+            `${process.env.NEXT_PUBLIC_URL_API}/clientes/${idCliente}`
+          );
+          if (response.status == 200) {
+              const dados = await response.json();
         logaCliente(dados);
       }
     }
-
+    
     if (localStorage.getItem("client_key")) {
-      const idClienteLocal = localStorage.getItem("client_key") as string;
-      buscaCliente(idClienteLocal);
-    }
-
+        const idClienteLocal = localStorage.getItem("client_key") as string;
+        buscaCliente(idClienteLocal);
+      }
+      
     async function buscaDados() {
       const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/gados`);
+      console.log(response);
       const dados = await response.json();
-      //console.log(dados);
+      console.log("Busca Dados Funcionando");
       setGados(dados);
     }
     buscaDados();
@@ -42,7 +44,7 @@ export default function Home() {
 
   return (
     <main
-      className="bg-cover bg-center bg-no-repeat"
+      className="bg-cover bg-center bg-no-repeat w-screen h-screen"
       style={{ backgroundImage: 'url("./fundo.jpeg")' }}
     >
       <InputPesquisa setGados={setGados} />
