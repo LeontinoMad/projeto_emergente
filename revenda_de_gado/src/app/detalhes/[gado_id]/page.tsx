@@ -71,11 +71,7 @@ export default function Detalhes() {
   return (
     <main
       className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
-<<<<<<< HEAD
-      style={{ backgroundImage: 'url("./fundo.jpeg")', height: "100vh" }}
-=======
       style={{ backgroundImage: 'url("/fundo.jpeg")' }}
->>>>>>> df3be099ef763d3fb291fafd20dcb499d05dc486
     >
       {showAlert && (
         <CustomAlert
