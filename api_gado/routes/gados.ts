@@ -103,7 +103,10 @@ router.get("/pesquisa/:termo", async (req, res) => {
           racas: true,
         },
         where: {
-          OR: [{ tipo: { contains: termo } }, { racas: { nome: termo } }],
+          OR: [
+            { tipo: { contains: termo.toLowerCase() } }, // Converte o termo para minúsculas
+            { racas: { nome: { contains: termo.toLowerCase() } } }, // Converte o nome da raça para minúsculas
+          ],
         },
       });
       res.status(200).json(gados);
@@ -126,6 +129,7 @@ router.get("/pesquisa/:termo", async (req, res) => {
     }
   }
 });
+
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
 

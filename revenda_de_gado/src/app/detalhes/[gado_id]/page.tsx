@@ -71,7 +71,7 @@ export default function Detalhes() {
   return (
     <main
       className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: 'url("./fundo.jpeg")' }}
+      style={{ backgroundImage: 'url("./fundo.jpeg")', height: "100vh" }}
     >
       {showAlert && (
         <CustomAlert
@@ -80,9 +80,9 @@ export default function Detalhes() {
           type={alertType}
         />
       )}
-      <section className="flex mt-10 flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-5xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mx-auto">
+      <section className="flex flex-col md:flex-row items-center bg-white border border-gray-200 rounded-lg shadow md:max-w-5xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mx-auto">
         <img
-          className="object-cover w-full rounded-t-lg h-96 md:h-2/4 md:w-2/4 md:rounded-none md:rounded-s-lg"
+          className="object-cover w-full h-96 md:h-auto md:w-2/4 rounded-t-lg md:rounded-none md:rounded-l-lg"
           src={gado?.foto}
           alt="Foto Gado."
         />
