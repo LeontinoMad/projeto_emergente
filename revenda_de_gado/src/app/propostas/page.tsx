@@ -73,7 +73,7 @@ export default function Propostas() {
     <section className="max-w-7xl mx-auto">
       <main
         className="min-h-screen bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: 'url("./fundo.jpeg")' }}
+        style={{ backgroundImage: 'url("/fundo.jpeg")' }}
       >
         {/* Conteúdo da página abaixo do cabeçalho */}
         <div className="py-12">

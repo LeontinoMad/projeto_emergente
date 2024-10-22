@@ -15,10 +15,7 @@ export default function Login() {
 
   const { logaCliente } = useClienteStore()
   const { register, handleSubmit } = useForm<inputs>();
-  const [esqueceuSenha, setEsqueceuSenha] = useState(false);
   const router = useRouter();
-
-  const [login, setLogin] = useState(true);
 
   async function verificaLogin(data: inputs) {
     const response = await fetch(
@@ -50,42 +47,14 @@ export default function Login() {
     }
   }
 
-  async function verificaEmail(data: inputs) {
-    console.log(data.email);
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_URL_API}/clientes/verifica-email`, 
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify({ email: data.email }),
-      }
-    );
-  
-    if (response.status == 200) {
-      const dados = await response.json();
-      console.log("Email encontrado");
-
-      // AJUSTAR A PARTIR DAQUI: ALTERAR A ROTA PARA O PRÓXIMO PASSO
-      router.push("/");
-    } else {
-      alert("Erro, e-mail não cadastrado.");
-    }
-  }
-
-  function handleVoltarLogin() {
-    setEsqueceuSenha(false);
-  }
-
   function handleEsqueceuSenha() {
-    router.push("/forgot-password");
+    router.push("/redefinir-senha/email");
   }
 
   return (
     <main
       className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: 'url("./fundo.jpeg")' }}
+      style={{ backgroundImage: 'url("/fundo.jpeg")' }}
     >
       <section>
         <div className="flex flex-col items-center justify-center px-2 py-2 mx-auto md:h-screen lg:py-0">
