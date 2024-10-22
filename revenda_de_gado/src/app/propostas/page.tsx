@@ -98,7 +98,7 @@ export default function Propostas() {
                   Gado
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  tipo
+                  Foto
                 </th>
                 <th scope="col" className="px-6 py-3">
                   Proposta
