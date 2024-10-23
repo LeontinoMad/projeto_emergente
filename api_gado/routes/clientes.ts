@@ -108,6 +108,33 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.put("/redefinir-senha/:email", async (req, res) => {
+  const { email } = req.params;
+  const { senha } = req.body;
+
+  if (!senha) {
+    res.status(400).json({ erro: "Informe a nova senha" });
+    return;
+  }
+
+  const salt = bcrypt.genSaltSync(12);
+  const hash = bcrypt.hashSync(senha, salt);
+
+  try {
+    
+    const cliente = await prisma.cliente.update({
+      where: { email: email},
+      data: {senha: hash}
+    });
+    res.status(201).json(cliente);
+    console.log("Funcionou");
+  } catch (error) {
+    res.status(400).json(error);
+    console.log("Não funcionou, otário");
+  }
+});
+
+
 router.post("/verifica-email", async (req, res) => {
   const { email } = req.body;
 
