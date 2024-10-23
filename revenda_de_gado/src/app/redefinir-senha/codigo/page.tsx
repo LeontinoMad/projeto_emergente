@@ -33,7 +33,7 @@ export default function VerificaOtp() {
     if (otpDigitado === codigoCorreto) {
       console.log("Parabéns, você acertou!");
       
-      // router.push("./redefinir-senha/nova-senha");
+      router.push("./nova-senha");
     } else {
       alert("Código inválido, tente novamente.");
     }

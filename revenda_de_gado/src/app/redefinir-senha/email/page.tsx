@@ -1,8 +1,6 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { useClienteStore } from "@/context/cliente";
-import { useState } from "react";
 
 
 type inputs = {
@@ -10,13 +8,14 @@ type inputs = {
   senha: string;
   manter: boolean;
 };
+export let emailValido = ""
 
 export default function EmailChange() {
 
   const { register, handleSubmit } = useForm<inputs>();
   const router = useRouter();
 
-
+  
   async function verificaEmail(data: inputs) {
     console.log(data.email);
     const response = await fetch(
@@ -33,8 +32,8 @@ export default function EmailChange() {
     if (response.status == 200) {
       const dados = await response.json();
       console.log("Email encontrado");
-
       router.push("/redefinir-senha/codigo");
+      emailValido = data.email
     } else {
       alert("Erro, e-mail não cadastrado.");
     }
