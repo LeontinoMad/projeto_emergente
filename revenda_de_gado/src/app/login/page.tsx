@@ -123,7 +123,7 @@ export default function Login() {
                       </div>
                       <a
                         onClick={handleEsqueceuSenha}
-                        className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                        className="text-sm font-medium text-primary-600 hover:underline cursor-pointer dark:text-white"
                       >
                         Esqueceu sua Senha?
                       </a>
