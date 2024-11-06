@@ -31,15 +31,15 @@ export function Header() {
         <div className="flex items-center space-x-6 rtl:space-x-reverse mr-24">
           {cliente.id ? (
             <>
-              <span className="text-black">{cliente.nome}</span>
+              <span className="text-gray-950 ">{cliente.nome}</span>
               <Link
                 href="/propostas"
-                className="font-bold text-gray-950 dark:text-blue-500 hover:underline"
+                className="font-bold text-gray-950 dark:text-gray-200 hover:underline"
               >
                 Minhas Propostas
               </Link>
               <span
-                className="cursor-pointer font-bold text-gray-200 dark:text-blue-500 hover:underline"
+                className="cursor-pointer font-bold text-gray-200 dark:text-gray-200 hover:underline"
                 onClick={sairCliente}
               >
                 Sair
@@ -49,7 +49,7 @@ export function Header() {
             <>
               <Link
                 href="/login"
-                className="font-bold text-gray-200 dark:text-gray-800 hover:underline"
+                className="font-bold text-xl text-gray-200 dark:text-gray-950 hover:underline"
               >
                 Entrar
               </Link>

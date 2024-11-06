@@ -52,7 +52,7 @@ export default function Home() {
       <section className="max-w-screen-xl mx-auto w-full px-4 ">
         {" "}
         {/* Adicionando padding horizontal */}
-        <h1 className="mb-10 mt-6 text-center text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">
+        <h1 className="mb-10 mt-6 text-center text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-gray-900">
           Animais{"  "}
           <span className="underline underline-offset-3 decoration-8 decoration-gray-800 dark:decoration-gray-600">
             em destaque

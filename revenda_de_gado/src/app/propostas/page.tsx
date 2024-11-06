@@ -76,12 +76,11 @@ export default function Propostas() {
         style={{ backgroundImage: 'url("/fundo.jpeg")' }}
       >
         {/* Conteúdo da página abaixo do cabeçalho */}
-        <div className="py-12">
-          {" "}
+        <div className="py-12 flex flex-col items-center text-center">
           {/* Adiciona espaçamento abaixo do cabeçalho */}
-          <h1 className="mb-6 mt-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
+          <h1 className="mb-6 mt-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-gray-800">
             Listagem de{" "}
-            <span className="underline underline-offset-3 decoration-8 decoration-gray-800 dark:decoration-orange-600">
+            <span className="underline underline-offset-3 decoration-8 decoration-gray-800 dark:decoration-gray-600">
               Minhas Propostas
             </span>
           </h1>
@@ -91,8 +90,8 @@ export default function Propostas() {
         <div className="overflow-x-auto">
           {" "}
           {/* Adiciona rolagem horizontal se necessário */}
-          <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-200">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-200">
               <tr>
                 <th scope="col" className="px-6 py-3">
                   Gado
