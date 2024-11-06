@@ -5,6 +5,8 @@ import gadosRoutes from "./routes/gados";
 import racasRoutes from "./routes/racas";
 import clientesRotes from "./routes/clientes";
 import propostasRoutes from "./routes/propostas";
+import adminsRoutes from "./routes/admins";
+import dashboardRoutes from "./routes/dashboard";
 
 const app = express();
 const port = 3004;
@@ -17,6 +19,8 @@ app.use("/gados", gadosRoutes);
 app.use("/racas", racasRoutes);
 app.use("/clientes", clientesRotes);
 app.use("/propostas", propostasRoutes);
+app.use("/admins", adminsRoutes);
+app.use("/dashboard", dashboardRoutes);
 
 app.get("/", (req, res) => {
   res.send("API : Sistema de venda de gado");

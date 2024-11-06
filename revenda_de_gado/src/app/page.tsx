@@ -44,12 +44,12 @@ export default function Home() {
 
   return (
     <main
-      className="bg-cover bg-center bg-no-repeat w-screen h-screen"
+      className="bg-cover bg-center bg-no-repeat p-12 "
       style={{ backgroundImage: 'url("./fundo.jpeg")' }}
     >
       <InputPesquisa setGados={setGados} />
 
-      <section className="max-w-screen-xl mx-auto w-full px-4">
+      <section className="max-w-screen-xl mx-auto w-full px-4 ">
         {" "}
         {/* Adicionando padding horizontal */}
         <h1 className="mb-10 mt-6 text-center text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">

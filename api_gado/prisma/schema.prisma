@@ -46,10 +46,22 @@ model Gado {
   sexo        Sexo       @default(MACHO)
   racas       Raca       @relation(fields: [racasId], references: [id])
   racasId     Int
+   admin      Admin        @relation(fields: [adminId], references: [id])
+  adminId     Int          @default(1)
+  fotos       Foto[]
   propostas   Proposta[]
   
   @@map("gados")
   }
+
+  model Foto {
+  id          Int      @id @default(autoincrement())
+  descricao   String   @db.VarChar(30)
+  codigoFoto  String   @db.LongText
+  gado       Gado    @relation(fields: [gadoId], references: [id])
+  gadoId     Int
+  @@map("fotos")
+}
 
   model Cliente {
   id           String   @db.VarChar(36) @id @default(uuid())
@@ -61,6 +73,17 @@ model Gado {
   propostas    Proposta[]
  
   @@map("clientes")
+}
+
+model Admin {
+  id           Int      @id @default(autoincrement())
+  nome         String   @db.VarChar(60)
+  email        String   @db.VarChar(60) @unique
+  senha        String   @db.VarChar(60)   // senha deve ser varchar(60)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt  
+  gados       Gado[]
+  @@map("admins")
 }
 
 enum Sexo {

@@ -11,6 +11,9 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^5.21.1",
-    "sonner": "^1.5.0"
+    "@types/js-cookie": "^3.0.6",
+    "js-cookie": "^3.0.5",
+    "react-google-charts": "^5.2.1",
+    "sonner": "^1.7.0"
   }
 }
